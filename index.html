@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<!-- saved from url=(0265)file:///C:/Users/mingf/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/0c783932-e9bd-4417-a1e2-a6cf887d13fe/41197de7-dc52-4551-a4c5-e031fca90404/local_b3ca5651-93bc-4817-8947-45a379bb4f3a/outputs/Output/ASCRM_CoA.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate of Analysis — ASCRM-030 / 032 / 034</title>
+<style>
+  :root{
+    --coa-bg:#0d1117;
+    --coa-panel:#151b23;
+    --coa-panel2:#1c232d;
+    --coa-border:#2a333f;
+    --coa-text:#e6edf3;
+    --coa-muted:#8b98a5;
+    --coa-accent:#ff8c1a;
+    --coa-accent2:#3fb1ce;
+    --coa-good:#2ea043;
+    --coa-warn:#d4a017;
+    --coa-bad:#e5484d;
+    --coa-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+    --coa-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--coa-bg);
+    color:var(--coa-text);
+    font-family:var(--coa-sans);
+    padding:28px 20px 60px;
+  }
+  .coa-wrap{max-width:1180px;margin:0 auto;}
+  .coa-header{
+    border:1px solid var(--coa-border);
+    background:linear-gradient(135deg,#151b23,#1a2028);
+    border-radius:10px;
+    padding:22px 26px;
+    margin-bottom:18px;
+    position:relative;
+    overflow:hidden;
+  }
+  .coa-header::before{
+    content:"";
+    position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--coa-accent),var(--coa-accent2));
+  }
+  .coa-eyebrow{
+    font-family:var(--coa-mono);
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--coa-accent);
+    margin-bottom:6px;
+  }
+  .coa-title{font-size:22px;font-weight:700;margin:0 0 4px;}
+  .coa-sub{color:var(--coa-muted);font-size:13.5px;line-height:1.5;}
+  .coa-meta{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;
+  }
+  .coa-chip{
+    font-family:var(--coa-mono);
+    font-size:11.5px;
+    background:var(--coa-panel2);
+    border:1px solid var(--coa-border);
+    color:var(--coa-muted);
+    padding:5px 10px;
+    border-radius:20px;
+  }
+  .coa-chip b{color:var(--coa-text);font-weight:600;}
+
+  .coa-tabs{
+    display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;
+  }
+  .coa-tab{
+    flex:1;min-width:160px;
+    background:var(--coa-panel);
+    border:1px solid var(--coa-border);
+    color:var(--coa-muted);
+    padding:12px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-family:var(--coa-sans);
+    text-align:left;
+    transition:all .15s ease;
+  }
+  .coa-tab:hover{border-color:var(--coa-accent2);color:var(--coa-text);}
+  .coa-tab.active{
+    background:linear-gradient(135deg,#20293a,#1a2230);
+    border-color:var(--coa-accent);
+    color:var(--coa-text);
+  }
+  .coa-tab .coa-tab-code{font-family:var(--coa-mono);font-weight:700;font-size:14.5px;color:var(--coa-accent);}
+  .coa-tab .coa-tab-name{font-size:12px;margin-top:2px;}
+
+  .coa-panel{
+    background:var(--coa-panel);
+    border:1px solid var(--coa-border);
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:16px;
+  }
+  .coa-controls{
+    display:flex;flex-wrap:wrap;gap:14px;align-items:center;
+    margin-bottom:16px;padding-bottom:16px;
+    border-bottom:1px dashed var(--coa-border);
+  }
+  .coa-controls-group{display:flex;align-items:center;gap:6px;}
+  .coa-controls label{font-size:11.5px;color:var(--coa-muted);font-family:var(--coa-mono);text-transform:uppercase;letter-spacing:.06em;margin-right:4px;}
+  .coa-btn-group{display:flex;border:1px solid var(--coa-border);border-radius:6px;overflow:hidden;}
+  .coa-btn{
+    background:var(--coa-panel2);color:var(--coa-muted);border:none;
+    padding:7px 13px;font-family:var(--coa-mono);font-size:12.5px;cursor:pointer;
+  }
+  .coa-btn + .coa-btn{border-left:1px solid var(--coa-border);}
+  .coa-btn.active{background:var(--coa-accent);color:#1a1005;font-weight:700;}
+  .coa-search{
+    background:var(--coa-panel2);border:1px solid var(--coa-border);color:var(--coa-text);
+    padding:7px 12px;border-radius:6px;font-family:var(--coa-sans);font-size:13px;min-width:200px;
+  }
+  .coa-search:focus{outline:none;border-color:var(--coa-accent2);}
+  .coa-reset{
+    background:none;border:1px solid var(--coa-border);color:var(--coa-muted);
+    padding:7px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-family:var(--coa-sans);
+  }
+  .coa-reset:hover{color:var(--coa-text);border-color:var(--coa-bad);}
+
+  table.coa-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .coa-table thead th{
+    text-align:left;font-family:var(--coa-mono);font-size:10.5px;text-transform:uppercase;
+    letter-spacing:.05em;color:var(--coa-muted);padding:8px 10px;border-bottom:1px solid var(--coa-border);
+    position:sticky;top:0;background:var(--coa-panel);
+  }
+  .coa-table tbody tr{border-bottom:1px solid #1e2530;}
+  .coa-table tbody tr:hover{background:var(--coa-panel2);}
+  .coa-table td{padding:8px 10px;vertical-align:middle;}
+  .coa-group-row td{
+    padding-top:14px;font-family:var(--coa-mono);font-size:10.5px;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--coa-accent2);border-bottom:none;
+  }
+  .coa-el{font-weight:700;font-family:var(--coa-mono);}
+  .coa-el-name{color:var(--coa-muted);font-size:11.5px;}
+  .coa-num{font-family:var(--coa-mono);}
+  .coa-range{font-family:var(--coa-mono);color:var(--coa-muted);white-space:nowrap;}
+  .coa-input{
+    width:88px;background:var(--coa-bg);border:1px solid var(--coa-border);color:var(--coa-text);
+    font-family:var(--coa-mono);padding:5px 7px;border-radius:5px;font-size:12.5px;
+  }
+  .coa-input:focus{outline:none;border-color:var(--coa-accent2);}
+  .coa-status{
+    font-family:var(--coa-mono);font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;
+    text-transform:uppercase;letter-spacing:.04em;display:inline-block;min-width:60px;text-align:center;
+  }
+  .coa-status.pass{background:rgba(46,160,67,.18);color:var(--coa-good);border:1px solid rgba(46,160,67,.4);}
+  .coa-status.warn{background:rgba(212,160,23,.18);color:var(--coa-warn);border:1px solid rgba(212,160,23,.4);}
+  .coa-status.fail{background:rgba(229,72,77,.18);color:var(--coa-bad);border:1px solid rgba(229,72,77,.4);}
+  .coa-status.idle{background:rgba(139,152,165,.12);color:var(--coa-muted);border:1px solid var(--coa-border);}
+  .coa-bar{position:relative;height:6px;background:#0a0e14;border-radius:4px;width:120px;overflow:visible;}
+  .coa-bar-fill{position:absolute;top:0;bottom:0;left:0;background:var(--coa-accent2);border-radius:4px;}
+  .coa-bar-mark{position:absolute;top:-3px;width:2px;height:12px;background:var(--coa-text);border-radius:1px;}
+
+  .coa-footnote{
+    font-size:11.5px;color:var(--coa-muted);line-height:1.6;margin-top:14px;
+    background:var(--coa-panel2);border:1px solid var(--coa-border);border-radius:8px;padding:12px 14px;
+  }
+  .coa-footnote b{color:var(--coa-text);}
+  .coa-summary-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+  .coa-summary-card{
+    flex:1;min-width:110px;background:var(--coa-panel2);border:1px solid var(--coa-border);
+    border-radius:8px;padding:10px 12px;text-align:center;
+  }
+  .coa-summary-card .n{font-family:var(--coa-mono);font-size:20px;font-weight:700;}
+  .coa-summary-card .l{font-size:10.5px;color:var(--coa-muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+  .n.pass{color:var(--coa-good);} .n.warn{color:var(--coa-warn);} .n.fail{color:var(--coa-bad);} .n.idle{color:var(--coa-muted);}
+  @media print{
+    body{background:#fff;color:#000;}
+    .coa-controls,.coa-tabs{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="coa-wrap">
+
+  <div class="coa-header">
+    <div class="coa-eyebrow">Certified Reference Material · XRF QC Reference</div>
+    <h1 class="coa-title">Certificate of Analysis — ASCRM Iron Ore CRMs</h1>
+    <div class="coa-sub">Interactive reference for ASCRM-030, ASCRM-032 and ASCRM-034, sourced from Standards Australia Technical Reports AS&nbsp;TR2.30/32/34–2013 (Standards Australia committee MN2/2, prepared per ISO Guide 35). Enter a measured XRF value against any element to check it against the certified value and calculated tolerance band.</div>
+    <div class="coa-meta">
+      <span class="coa-chip">Committee: <b>MN2/2 — Chemical Analysis of Iron Ores</b></span>
+      <span class="coa-chip">Guide: <b>ISO Guide 35 / ISO 16042</b></span>
+      <span class="coa-chip">Format: <b>10 × 10 g foil pouches per 100 g box</b></span>
+    </div>
+  </div>
+
+  <div class="coa-tabs" id="coaTabs"><div class="coa-tab active"><div class="coa-tab-code">ASCRM-030</div><div class="coa-tab-name">West Pilbara Channel Iron Deposit (West Pilbara CID)</div></div><div class="coa-tab"><div class="coa-tab-code">ASCRM-032</div><div class="coa-tab-name">Pilbara Hematite</div></div><div class="coa-tab"><div class="coa-tab-code">ASCRM-034</div><div class="coa-tab-name">Pilbara Fines</div></div></div>
+
+  <div class="coa-panel">
+    <div class="coa-controls">
+      <div class="coa-controls-group">
+        <label>Tolerance basis</label>
+        <div class="coa-btn-group" id="coaBasisGroup">
+          <button class="coa-btn active" data-basis="sw">Within-lab (Sw)</button>
+          <button class="coa-btn" data-basis="sl">Between-lab (SL)</button>
+        </div>
+      </div>
+      <div class="coa-controls-group">
+        <label>Sigma level</label>
+        <div class="coa-btn-group" id="coaSigmaGroup">
+          <button class="coa-btn active" data-sigma="2">2σ (Warning)</button>
+          <button class="coa-btn" data-sigma="3">3σ (Action)</button>
+        </div>
+      </div>
+      <div class="coa-controls-group">
+        <label>Filter</label>
+        <input type="text" class="coa-search" id="coaSearch" placeholder="Search element or symbol…">
+      </div>
+      <button class="coa-reset" id="coaReset">Clear all entered values</button>
+    </div>
+
+    <div class="coa-summary-bar" id="coaSummary">
+    <div class="coa-summary-card"><div class="n pass">0</div><div class="l">Pass</div></div>
+    <div class="coa-summary-card"><div class="n warn">0</div><div class="l">Warning</div></div>
+    <div class="coa-summary-card"><div class="n fail">0</div><div class="l">Fail</div></div>
+    <div class="coa-summary-card"><div class="n idle">25</div><div class="l">Not entered</div></div>
+    <div class="coa-summary-card"><div class="n" style="color:var(--coa-accent2)">57</div><div class="l">Labs (round-robin)</div></div>
+  </div>
+
+    <div style="overflow-x:auto;">
+      <table class="coa-table">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Certified value</th>
+            <th>SD (Sw / SL)</th>
+            <th>Labs (N)</th>
+            <th>Acceptable range</th>
+            <th>Measured (enter %)</th>
+            <th>Δ from certified</th>
+            <th style="min-width:130px;">Position</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="coaTableBody"><tr class="coa-group-row"><td colspan="9">Major / routine elements</td></tr><tr data-row-key="ASCRM30_Fe" data-certified="56.76" data-sd="0.21">
+      <td><span class="coa-el">Fe</span><div class="coa-el-name">Iron</div></td>
+      <td class="coa-num">56.76%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.2100</td>
+      <td class="coa-num" style="color:var(--coa-muted)">12</td>
+      <td class="coa-range">56.34–57.18%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Fe" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Si" data-certified="2.71" data-sd="0.02">
+      <td><span class="coa-el">Si</span><div class="coa-el-name">Silicon</div></td>
+      <td class="coa-num">2.710%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0200</td>
+      <td class="coa-num" style="color:var(--coa-muted)">55</td>
+      <td class="coa-range">2.670–2.750%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Si" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Ca" data-certified="0.245" data-sd="0.003">
+      <td><span class="coa-el">Ca</span><div class="coa-el-name">Calcium</div></td>
+      <td class="coa-num">0.2450%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0030</td>
+      <td class="coa-num" style="color:var(--coa-muted)">56</td>
+      <td class="coa-range">0.2390–0.2510%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Ca" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Mn" data-certified="0.079" data-sd="0.001">
+      <td><span class="coa-el">Mn</span><div class="coa-el-name">Manganese</div></td>
+      <td class="coa-num">0.0790%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0010</td>
+      <td class="coa-num" style="color:var(--coa-muted)">57</td>
+      <td class="coa-range">0.0770–0.0810%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Mn" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Al" data-certified="1.42" data-sd="0.01">
+      <td><span class="coa-el">Al</span><div class="coa-el-name">Aluminium</div></td>
+      <td class="coa-num">1.420%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0100</td>
+      <td class="coa-num" style="color:var(--coa-muted)">58</td>
+      <td class="coa-range">1.400–1.440%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Al" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Ti" data-certified="0.089" data-sd="0.002">
+      <td><span class="coa-el">Ti</span><div class="coa-el-name">Titanium</div></td>
+      <td class="coa-num">0.0890%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0020</td>
+      <td class="coa-num" style="color:var(--coa-muted)">55</td>
+      <td class="coa-range">0.0850–0.0930%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Ti" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Mg" data-certified="0.108" data-sd="0.007">
+      <td><span class="coa-el">Mg</span><div class="coa-el-name">Magnesium</div></td>
+      <td class="coa-num">0.1080%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0070</td>
+      <td class="coa-num" style="color:var(--coa-muted)">55</td>
+      <td class="coa-range">0.0940–0.1220%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Mg" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_P" data-certified="0.038" data-sd="0.001">
+      <td><span class="coa-el">P</span><div class="coa-el-name">Phosphorus</div></td>
+      <td class="coa-num">0.0380%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0010</td>
+      <td class="coa-num" style="color:var(--coa-muted)">58</td>
+      <td class="coa-range">0.0360–0.0400%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_P" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_S" data-certified="0.021" data-sd="0.001">
+      <td><span class="coa-el">S</span><div class="coa-el-name">Sulfur</div></td>
+      <td class="coa-num">0.0210%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0010</td>
+      <td class="coa-num" style="color:var(--coa-muted)">48</td>
+      <td class="coa-range">0.0190–0.0230%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_S" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_LOI" data-certified="9.24" data-sd="0.04">
+      <td><span class="coa-el">LOI</span><div class="coa-el-name">Loss on Ignition</div></td>
+      <td class="coa-num">9.240%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0400</td>
+      <td class="coa-num" style="color:var(--coa-muted)">7</td>
+      <td class="coa-range">9.160–9.320%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_LOI" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr class="coa-group-row"><td colspan="9">Trace elements</td></tr><tr data-row-key="ASCRM30_K" data-certified="0.009" data-sd="0.0013">
+      <td><span class="coa-el">K</span><div class="coa-el-name">Potassium</div></td>
+      <td class="coa-num">0.0090%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0013</td>
+      <td class="coa-num" style="color:var(--coa-muted)">45</td>
+      <td class="coa-range">0.0064–0.0116%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_K" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Sn" data-certified="0" data-sd="0">
+      <td><span class="coa-el">Sn</span><div class="coa-el-name">Tin</div></td>
+      <td class="coa-num">0.0000%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0000</td>
+      <td class="coa-num" style="color:var(--coa-muted)">18</td>
+      <td class="coa-range">0.0000–0.0000%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Sn" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_V" data-certified="0.0042" data-sd="0.0005">
+      <td><span class="coa-el">V</span><div class="coa-el-name">Vanadium</div></td>
+      <td class="coa-num">0.0042%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0005</td>
+      <td class="coa-num" style="color:var(--coa-muted)">29</td>
+      <td class="coa-range">0.0032–0.0052%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_V" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Cr" data-certified="0.002" data-sd="0.0003">
+      <td><span class="coa-el">Cr</span><div class="coa-el-name">Chromium</div></td>
+      <td class="coa-num">0.0020%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0003</td>
+      <td class="coa-num" style="color:var(--coa-muted)">28</td>
+      <td class="coa-range">0.0014–0.0026%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Cr" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Co" data-certified="0.0014" data-sd="0.0001">
+      <td><span class="coa-el">Co</span><div class="coa-el-name">Cobalt</div></td>
+      <td class="coa-num">0.0014%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0001</td>
+      <td class="coa-num" style="color:var(--coa-muted)">22</td>
+      <td class="coa-range">0.0012–0.0016%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Co" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Ni" data-certified="0.0019" data-sd="0.0005">
+      <td><span class="coa-el">Ni</span><div class="coa-el-name">Nickel</div></td>
+      <td class="coa-num">0.0019%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0005</td>
+      <td class="coa-num" style="color:var(--coa-muted)">25</td>
+      <td class="coa-range">0.0009–0.0029%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Ni" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Cu" data-certified="0.0016" data-sd="0.0005">
+      <td><span class="coa-el">Cu</span><div class="coa-el-name">Copper</div></td>
+      <td class="coa-num">0.0016%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0005</td>
+      <td class="coa-num" style="color:var(--coa-muted)">27</td>
+      <td class="coa-range">0.0006–0.0026%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Cu" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Zn" data-certified="0.0096" data-sd="0.0008">
+      <td><span class="coa-el">Zn</span><div class="coa-el-name">Zinc</div></td>
+      <td class="coa-num">0.0096%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0008</td>
+      <td class="coa-num" style="color:var(--coa-muted)">33</td>
+      <td class="coa-range">0.0080–0.0112%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Zn" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_As" data-certified="0.0014" data-sd="0.0001">
+      <td><span class="coa-el">As</span><div class="coa-el-name">Arsenic</div></td>
+      <td class="coa-num">0.0014%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0001</td>
+      <td class="coa-num" style="color:var(--coa-muted)">20</td>
+      <td class="coa-range">0.0012–0.0016%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_As" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Pb" data-certified="0.0008" data-sd="0.0005">
+      <td><span class="coa-el">Pb</span><div class="coa-el-name">Lead</div></td>
+      <td class="coa-num">0.0008%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0005</td>
+      <td class="coa-num" style="color:var(--coa-muted)">23</td>
+      <td class="coa-range">-0.0002–0.0018%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Pb" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Ba" data-certified="0.0034" data-sd="0.0009">
+      <td><span class="coa-el">Ba</span><div class="coa-el-name">Barium</div></td>
+      <td class="coa-num">0.0034%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0009</td>
+      <td class="coa-num" style="color:var(--coa-muted)">27</td>
+      <td class="coa-range">0.0016–0.0052%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Ba" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Na" data-certified="0.017" data-sd="0.0026">
+      <td><span class="coa-el">Na</span><div class="coa-el-name">Sodium</div></td>
+      <td class="coa-num">0.0170%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0026</td>
+      <td class="coa-num" style="color:var(--coa-muted)">35</td>
+      <td class="coa-range">0.0118–0.0222%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Na" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Cl" data-certified="0.0101" data-sd="0.0021">
+      <td><span class="coa-el">Cl</span><div class="coa-el-name">Chlorine</div></td>
+      <td class="coa-num">0.0101%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0021</td>
+      <td class="coa-num" style="color:var(--coa-muted)">16</td>
+      <td class="coa-range">0.0059–0.0143%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Cl" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Sr" data-certified="0.001" data-sd="0">
+      <td><span class="coa-el">Sr</span><div class="coa-el-name">Strontium</div></td>
+      <td class="coa-num">0.0010%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0000</td>
+      <td class="coa-num" style="color:var(--coa-muted)">14</td>
+      <td class="coa-range">0.0010–0.0010%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Sr" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr><tr data-row-key="ASCRM30_Zr" data-certified="0.0037" data-sd="0.0002">
+      <td><span class="coa-el">Zr</span><div class="coa-el-name">Zirconium</div></td>
+      <td class="coa-num">0.0037%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±0.0002</td>
+      <td class="coa-num" style="color:var(--coa-muted)">15</td>
+      <td class="coa-range">0.0033–0.0041%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="ASCRM30_Zr" placeholder="%" value=""></td>
+      <td class="coa-diff"><span class="coa-num" style="color:var(--coa-muted)">—</span></td>
+      <td class="coa-pos"><div class="coa-bar"></div></td>
+      <td class="coa-status-cell"><span class="coa-status idle">idle</span></td>
+    </tr></tbody>
+      </table>
+    </div>
+
+    <div class="coa-footnote">
+      <b>How limits are calculated:</b> the source certificates (§8, Uncertainty and Tolerance Intervals) state that a common approach is to set performance gates at 2× or 3× the standard deviation observed during the inter-laboratory certification program, and recommend cross-checking against the ISO&nbsp;16042 acceptance formula. The bands shown here are <b>certified value ± (k × SD)</b> using the toggle above — they are a calculated convenience, not a separately published "acceptable limit" field in the certificate. The certificates also caution that Table&nbsp;3 SDs reflect inter-laboratory round-robin variability and do not capture the repeatability of any single instrument — for routine XRF control charting, cross-check against your own lab's historical CRM control-chart limits (ISO&nbsp;17025) where available. Fe is certified using ISO&nbsp;2596 moisture-corrected determinations only.
+    </div>
+  </div>
+
+</div>
+
+<script>
+const MATERIALS = {
+  ASCRM30: {
+    code: "ASCRM-030", name: "West Pilbara Channel Iron Deposit (West Pilbara CID)",
+    standard: "AS TR2.30–2013", nLabs: 57,
+    elements: [
+      ["Fe","Iron","major",56.76,0.23,0.21,12,4],
+      ["Si","Silicon","major",2.71,0.02,0.02,55,3.8],
+      ["Ca","Calcium","major",0.245,0.005,0.003,56,3.9],
+      ["Mn","Manganese","major",0.079,0.002,0.001,57,3.9],
+      ["Al","Aluminium","major",1.42,0.02,0.01,58,3.8],
+      ["Ti","Titanium","major",0.089,0.003,0.002,55,3.9],
+      ["Mg","Magnesium","major",0.108,0.012,0.007,55,3.8],
+      ["P","Phosphorus","major",0.038,0.001,0.001,58,3.8],
+      ["S","Sulfur","major",0.021,0.002,0.001,48,3.8],
+      ["LOI","Loss on Ignition","major",9.24,0.13,0.04,7,2.9],
+      ["K","Potassium","trace",0.009,0.0027,0.0013,45,3.6],
+      ["Sn","Tin","trace",0.0000,0.0001,0.0000,18,3.4],
+      ["V","Vanadium","trace",0.0042,0.0008,0.0005,29,3.7],
+      ["Cr","Chromium","trace",0.0020,0.0007,0.0003,28,3.4],
+      ["Co","Cobalt","trace",0.0014,0.0001,0.0001,22,3.7],
+      ["Ni","Nickel","trace",0.0019,0.0007,0.0005,25,3.5],
+      ["Cu","Copper","trace",0.0016,0.0007,0.0005,27,3.6],
+      ["Zn","Zinc","trace",0.0096,0.0006,0.0008,33,3.6],
+      ["As","Arsenic","trace",0.0014,0.0007,0.0001,20,3.5],
+      ["Pb","Lead","trace",0.0008,0.0003,0.0005,23,3.6],
+      ["Ba","Barium","trace",0.0034,0.0015,0.0009,27,3.6],
+      ["Na","Sodium","trace",0.0170,0.0036,0.0026,35,3.5],
+      ["Cl","Chlorine","trace",0.0101,0.0054,0.0021,16,3.5],
+      ["Sr","Strontium","trace",0.0010,0.0000,0.0000,14,3.0],
+      ["Zr","Zirconium","trace",0.0037,0.0006,0.0002,15,2.9]
+    ]
+  },
+  ASCRM32: {
+    code: "ASCRM-032", name: "Pilbara Hematite",
+    standard: "AS TR2.32–2013", nLabs: 103,
+    elements: [
+      ["Fe","Iron","major",63.53,0.11,0.06,12,4],
+      ["Si","Silicon","major",1.81,0.03,0.01,103,3.6],
+      ["Ca","Calcium","major",0.040,0.004,0.002,96,3.5],
+      ["Mn","Manganese","major",0.071,0.002,0.001,99,3.6],
+      ["Al","Aluminium","major",0.97,0.02,0.01,103,3.6],
+      ["Ti","Titanium","major",0.043,0.003,0.002,96,3.6],
+      ["Mg","Magnesium","major",0.039,0.005,0.009,91,3.5],
+      ["P","Phosphorus","major",0.074,0.002,0.001,100,3.6],
+      ["S","Sulfur","major",0.011,0.001,0.001,77,3.6],
+      ["LOI","Loss on Ignition","major",2.90,0.00,0.04,10,4],
+      ["K","Potassium","trace",0.006,0.0026,0.0006,70,3.4],
+      ["Sn","Tin","trace",0.0013,0.0010,0.0009,20,3.4],
+      ["V","Vanadium","trace",0.0022,0.0005,0.0004,39,3.2],
+      ["Cr","Chromium","trace",0.0022,0.0009,0.0004,36,3.2],
+      ["Co","Cobalt","trace",0.0008,0.0006,0.0004,27,3.3],
+      ["Ni","Nickel","trace",0.0011,0.0005,0.0004,31,3.4],
+      ["Cu","Copper","trace",0.0009,0.0011,0.0000,36,3.4],
+      ["Zn","Zinc","trace",0.0022,0.0013,0.0004,46,3.2],
+      ["As","Arsenic","trace",0.0018,0.0011,0.0003,34,3.4],
+      ["Pb","Lead","trace",0.0008,0.0008,0.0004,34,3.2],
+      ["Ba","Barium","trace",0.0037,0.0016,0.0005,35,3.3],
+      ["Na","Sodium","trace",0.0085,0.0043,0.0026,47,3.3],
+      ["Cl","Chlorine","trace",0.0080,0.0025,0.0007,26,3.1],
+      ["Sr","Strontium","trace",0.0008,0.0004,0.0001,20,3.3],
+      ["Zr","Zirconium","trace",0.0019,0.0015,0.0001,14,3.6]
+    ]
+  },
+  ASCRM34: {
+    code: "ASCRM-034", name: "Pilbara Fines",
+    standard: "AS TR2.34–2013", nLabs: 100,
+    elements: [
+      ["Fe","Iron","major",61.59,0.16,0.07,12,3.8],
+      ["Si","Silicon","major",2.00,0.02,0.02,97,3.7],
+      ["Ca","Calcium","major",0.029,0.005,0.003,92,3.6],
+      ["Mn","Manganese","major",0.141,0.003,0.003,96,3.8],
+      ["Al","Aluminium","major",1.19,0.02,0.01,100,3.7],
+      ["Ti","Titanium","major",0.054,0.003,0.001,92,3.7],
+      ["Mg","Magnesium","major",0.040,0.009,0.003,92,3.6],
+      ["P","Phosphorus","major",0.082,0.001,0.001,99,3.7],
+      ["S","Sulfur","major",0.024,0.004,0.002,79,3.6],
+      ["LOI","Loss on Ignition","major",4.76,0.09,0.04,10,3.8],
+      ["K","Potassium","trace",0.012,0.0030,0.0008,74,3.7],
+      ["Sn","Tin","trace",0.0005,0.0011,0.0009,30,3.5],
+      ["V","Vanadium","trace",0.0021,0.0010,0.0002,43,3.5],
+      ["Cr","Chromium","trace",0.0022,0.0008,0.0006,45,3.5],
+      ["Co","Cobalt","trace",0.0009,0.0006,0.0004,33,3.5],
+      ["Ni","Nickel","trace",0.0015,0.0009,0.0003,38,3.5],
+      ["Cu","Copper","trace",0.0009,0.0005,0.0001,42,3.5],
+      ["Zn","Zinc","trace",0.0016,0.0009,0.0004,46,3.4],
+      ["As","Arsenic","trace",0.0011,0.0008,0.0001,33,3.6],
+      ["Pb","Lead","trace",0.0012,0.0017,0.0008,39,3.4],
+      ["Ba","Barium","trace",0.0055,0.0031,0.0002,40,3.5],
+      ["Na","Sodium","trace",0.0117,0.0042,0.0020,61,3.4],
+      ["Cl","Chlorine","trace",0.0110,0.0037,0.0017,25,3.7],
+      ["Sr","Strontium","trace",0.0013,0.0006,0.0005,23,3.3],
+      ["Zr","Zirconium","trace",0.0021,0.0008,0.0006,20,3.3]
+    ]
+  }
+};
+
+let state = { active: "ASCRM30", basis: "sw", sigma: 2, filter: "", entered: {} };
+
+function decimalsFor(v){
+  if (v === 0) return 4;
+  const abs = Math.abs(v);
+  if (abs >= 10) return 2;
+  if (abs >= 1) return 3;
+  return 4;
+}
+function fmt(v){ return v.toFixed(decimalsFor(v)); }
+
+function buildTabs(){
+  const tabWrap = document.getElementById("coaTabs");
+  tabWrap.innerHTML = "";
+  Object.keys(MATERIALS).forEach(key=>{
+    const m = MATERIALS[key];
+    const btn = document.createElement("div");
+    btn.className = "coa-tab" + (state.active===key ? " active":"");
+    btn.innerHTML = `<div class="coa-tab-code">${m.code}</div><div class="coa-tab-name">${m.name}</div>`;
+    btn.onclick = ()=>{ state.active = key; render(); };
+    tabWrap.appendChild(btn);
+  });
+}
+
+function computeStatus(certified, sd, k, measured){
+  if (measured === null || measured === undefined || isNaN(measured)) return "idle";
+  const diff = Math.abs(measured - certified);
+  if (sd === 0) return diff === 0 ? "pass" : "fail";
+  if (diff <= sd*k) return "pass";
+  if (diff <= sd*k*1.5) return "warn";
+  return "fail";
+}
+
+// Parse a raw entered string (kept verbatim in state.entered so the input
+// element's value is never rewritten mid-keystroke, e.g. while typing "0.05").
+function parsedValue(key){
+  const raw = state.entered[key];
+  if (raw === undefined || raw === null || raw === "") return null;
+  const v = parseFloat(raw);
+  return isNaN(v) ? null : v;
+}
+
+function render(){
+  buildTabs();
+  const m = MATERIALS[state.active];
+  const tbody = document.getElementById("coaTableBody");
+  tbody.innerHTML = "";
+  const filter = state.filter.trim().toLowerCase();
+
+  let lastGroup = null;
+
+  m.elements.forEach(row=>{
+    const [sym, name, group, certified, sl, sw, n, navg] = row;
+    if (filter && !(sym.toLowerCase().includes(filter) || name.toLowerCase().includes(filter))) return;
+
+    if (group !== lastGroup){
+      const gtr = document.createElement("tr");
+      gtr.className = "coa-group-row";
+      gtr.innerHTML = `<td colspan="9">${group === "major" ? "Major / routine elements" : "Trace elements"}</td>`;
+      tbody.appendChild(gtr);
+      lastGroup = group;
+    }
+
+    const sd = state.basis === "sw" ? sw : sl;
+    const k = state.sigma;
+    const lo = certified - sd*k, hi = certified + sd*k;
+    const key = state.active + "_" + sym;
+    const rawVal = state.entered[key] !== undefined && state.entered[key] !== null ? state.entered[key] : "";
+
+    const tr = document.createElement("tr");
+    tr.dataset.rowKey = key;
+    tr.dataset.certified = certified;
+    tr.dataset.sd = sd;
+
+    tr.innerHTML = `
+      <td><span class="coa-el">${sym}</span><div class="coa-el-name">${name}</div></td>
+      <td class="coa-num">${fmt(certified)}%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">±${fmt(sd)}</td>
+      <td class="coa-num" style="color:var(--coa-muted)">${n}</td>
+      <td class="coa-range">${fmt(lo)}–${fmt(hi)}%</td>
+      <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="${key}" placeholder="%" value="${rawVal}"></td>
+      <td class="coa-diff"></td>
+      <td class="coa-pos"></td>
+      <td class="coa-status-cell"></td>
+    `;
+    tbody.appendChild(tr);
+    updateRowVisuals(key);
+  });
+
+  tbody.querySelectorAll(".coa-input").forEach(inp=>{
+    inp.addEventListener("input", e=>{
+      const k = e.target.getAttribute("data-key");
+      state.entered[k] = e.target.value; // keep raw string, don't touch input.value
+      updateRowVisuals(k);
+      updateSummary();
+    });
+  });
+
+  updateSummary();
+}
+
+// Recompute only the derived cells (diff / position bar / status) for one row,
+// without rebuilding the <input> so the caret and in-progress decimal typing
+// (e.g. "0." or "1.") are never disturbed.
+function updateRowVisuals(key){
+  const row = document.querySelector(`tr[data-row-key="${CSS.escape(key)}"]`);
+  if (!row) return;
+  const certified = parseFloat(row.dataset.certified);
+  const sd = parseFloat(row.dataset.sd);
+  const k = state.sigma;
+  const measured = parsedValue(key);
+  const status = computeStatus(certified, sd, k, measured);
+
+  const diffCell = row.querySelector(".coa-diff");
+  const posCell = row.querySelector(".coa-pos");
+  const statusCell = row.querySelector(".coa-status-cell");
+
+  if (measured !== null){
+    diffCell.innerHTML = `<span class="coa-num">${measured >= certified ? "+" : ""}${fmt(measured-certified)}</span>`;
+  } else {
+    diffCell.innerHTML = `<span class="coa-num" style="color:var(--coa-muted)">—</span>`;
+  }
+
+  if (measured !== null && sd > 0){
+    const span = sd*k*1.8;
+    const rangeLo = certified - span, rangeHi = certified + span;
+    const pct = Math.min(100, Math.max(0, ((measured - rangeLo)/(rangeHi-rangeLo))*100));
+    const certPct = ((certified-rangeLo)/(rangeHi-rangeLo))*100;
+    posCell.innerHTML = `<div class="coa-bar">
+      <div class="coa-bar-mark" style="left:${certPct}%;background:#8b98a5;"></div>
+      <div class="coa-bar-mark" style="left:${pct}%;background:var(--coa-accent);height:16px;top:-5px;"></div>
+    </div>`;
+  } else {
+    posCell.innerHTML = `<div class="coa-bar"></div>`;
+  }
+
+  statusCell.innerHTML = `<span class="coa-status ${status}">${status}</span>`;
+}
+
+function updateSummary(){
+  const m = MATERIALS[state.active];
+  let counts = {pass:0, warn:0, fail:0, idle:0};
+  m.elements.forEach(row=>{
+    const [sym, , , certified, sl, sw] = row;
+    const sd = state.basis === "sw" ? sw : sl;
+    const key = state.active + "_" + sym;
+    const measured = parsedValue(key);
+    const status = computeStatus(certified, sd, state.sigma, measured);
+    counts[status]++;
+  });
+  const summary = document.getElementById("coaSummary");
+  summary.innerHTML = `
+    <div class="coa-summary-card"><div class="n pass">${counts.pass}</div><div class="l">Pass</div></div>
+    <div class="coa-summary-card"><div class="n warn">${counts.warn}</div><div class="l">Warning</div></div>
+    <div class="coa-summary-card"><div class="n fail">${counts.fail}</div><div class="l">Fail</div></div>
+    <div class="coa-summary-card"><div class="n idle">${counts.idle}</div><div class="l">Not entered</div></div>
+    <div class="coa-summary-card"><div class="n" style="color:var(--coa-accent2)">${m.nLabs}</div><div class="l">Labs (round-robin)</div></div>
+  `;
+}
+
+document.getElementById("coaBasisGroup").addEventListener("click", e=>{
+  if (!e.target.dataset.basis) return;
+  state.basis = e.target.dataset.basis;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle("active", b===e.target));
+  render();
+});
+document.getElementById("coaSigmaGroup").addEventListener("click", e=>{
+  if (!e.target.dataset.sigma) return;
+  state.sigma = parseInt(e.target.dataset.sigma,10);
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle("active", b===e.target));
+  render();
+});
+document.getElementById("coaSearch").addEventListener("input", e=>{
+  state.filter = e.target.value;
+  render();
+});
+document.getElementById("coaReset").addEventListener("click", ()=>{
+  state.entered = {};
+  render();
+});
+
+render();
+</script>
+
+
+</body></html>
