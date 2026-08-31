@@ -145,6 +145,12 @@
     font-family:var(--coa-mono);padding:5px 7px;border-radius:5px;font-size:12.5px;
   }
   .coa-input:focus{outline:none;border-color:var(--coa-accent2);}
+  .coa-pq-sim{color:var(--coa-accent2);font-style:italic;}
+  .coa-sim-tag{
+    font-family:var(--coa-mono);font-size:9px;font-style:normal;font-weight:700;
+    color:var(--coa-accent2);border:1px solid var(--coa-accent2);border-radius:4px;
+    padding:0 4px;margin-left:3px;letter-spacing:.04em;
+  }
   .coa-status{
     font-family:var(--coa-mono);font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;
     text-transform:uppercase;letter-spacing:.04em;display:inline-block;min-width:60px;text-align:center;
@@ -153,6 +159,7 @@
   .coa-status.warn{background:rgba(212,160,23,.18);color:var(--coa-warn);border:1px solid rgba(212,160,23,.4);}
   .coa-status.fail{background:rgba(229,72,77,.18);color:var(--coa-bad);border:1px solid rgba(229,72,77,.4);}
   .coa-status.idle{background:rgba(139,152,165,.12);color:var(--coa-muted);border:1px solid var(--coa-border);}
+  .coa-status.na{background:rgba(139,152,165,.06);color:var(--coa-muted);border:1px dashed var(--coa-border);}
   .coa-bar{position:relative;height:6px;background:#0a0e14;border-radius:4px;width:120px;overflow:visible;}
   .coa-bar-fill{position:absolute;top:0;bottom:0;left:0;background:var(--coa-accent2);border-radius:4px;}
   .coa-bar-mark{position:absolute;top:-3px;width:2px;height:12px;background:var(--coa-text);border-radius:1px;}
@@ -170,6 +177,10 @@
   .coa-summary-card .n{font-family:var(--coa-mono);font-size:20px;font-weight:700;}
   .coa-summary-card .l{font-size:10.5px;color:var(--coa-muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
   .n.pass{color:var(--coa-good);} .n.warn{color:var(--coa-warn);} .n.fail{color:var(--coa-bad);} .n.idle{color:var(--coa-muted);}
+  .coa-version-footer{
+    max-width:1180px;margin:18px auto 0;text-align:center;
+    font-family:var(--coa-mono);font-size:10.5px;color:var(--coa-muted);
+  }
   @media print{
     body{background:#fff;color:#000;}
     .coa-controls,.coa-tabs{display:none;}
@@ -187,6 +198,7 @@
       <span class="coa-chip">Committee: <b>MN2/2 — Chemical Analysis of Iron Ores</b></span>
       <span class="coa-chip">Guide: <b>ISO Guide 35 / ISO 16042</b></span>
       <span class="coa-chip">Format: <b>10 × 10 g foil pouches per 100 g box</b></span>
+      <span class="coa-chip">Version: <b>v6</b></span>
     </div>
   </div>
 
@@ -202,11 +214,13 @@
         </div>
       </div>
       <div class="coa-controls-group">
-        <label>Sigma level</label>
+        <label>Limit</label>
         <div class="coa-btn-group" id="coaSigmaGroup">
           <button class="coa-btn" data-sigma="1">1σ</button>
-          <button class="coa-btn active" data-sigma="2">2σ (Warning)</button>
-          <button class="coa-btn" data-sigma="3">3σ (Action)</button>
+          <button class="coa-btn active" data-sigma="2">2σ</button>
+          <button class="coa-btn" data-sigma="3">3σ</button>
+          <button class="coa-btn" data-sigma="iso">ISO (Test)</button>
+          <button class="coa-btn" data-sigma="pq">PQ (Kim)</button>
         </div>
       </div>
       <div class="coa-controls-group">
@@ -224,9 +238,9 @@
           <tr>
             <th>Element</th>
             <th>Certified value</th>
-            <th>SD (Sw / SL)</th>
+            <th id="thTol">Tolerance (±)</th>
             <th>Labs (N)</th>
-            <th>Acceptable range</th>
+            <th id="thRange">Acceptable range</th>
             <th>Measured (enter %)</th>
             <th>Δ from certified</th>
             <th style="min-width:130px;">Position</th>
@@ -241,8 +255,14 @@
       <b>How limits are calculated:</b> the source certificates (§8, Uncertainty and Tolerance Intervals) state that a common approach is to set performance gates at 2× or 3× the standard deviation observed during the inter-laboratory certification program, and recommend cross-checking against the ISO&nbsp;16042 acceptance formula. The bands shown here are <b>certified value ± (k × SD)</b> using the toggle above — they are a calculated convenience, not a separately published "acceptable limit" field in the certificate. The certificates also caution that Table&nbsp;3 SDs reflect inter-laboratory round-robin variability and do not capture the repeatability of any single instrument — for routine XRF control charting, cross-check against your own lab's historical CRM control-chart limits (ISO&nbsp;17025) where available. Fe is certified using ISO&nbsp;2596 moisture-corrected determinations only.
       <br><br>
       <b>Oxide conversion:</b> Si, Al, Ca, Mg, Ti and K are certified as elemental % in the source documents (Table 3) but are shown here as SiO2, Al2O3, CaO, MgO, TiO2 and K2O to match standard XRF fusion-bead reporting. Certified value and SD were both scaled by the same factor: SiO2 = Si × 2.1390, Al2O3 = Al × 1.8900, CaO = Ca × 1.3992, MgO = Mg × 1.6578, TiO2 = Ti × 1.6680 (factors per this project's XRF workbook 'element conversion' tab), and K2O = K × 1.2045 (standard stoichiometric ratio, not in that tab). Fe, P, S, Mn, LOI and all trace elements remain elemental.
+      <br><br>
+      <b>ISO limit:</b> the "ISO" option computes the mass-fraction difference allowance from ISO&nbsp;16042:2007 Clause&nbsp;6: R<sub>c</sub> = C<sub>s</sub> × (−10.771·ln(C<sub>s</sub>) + 25.4) / 200, where C<sub>s</sub> is the certified mass fraction (%). This clause applies to elemental mass fractions up to 10&nbsp;%; per Clause&nbsp;6's note, total Fe instead uses the standard's fixed ±0.5&nbsp;% Fe allowance regardless of this formula. This mode ignores the Sw/SL toggle above.
+      <br><br>
+      <b>PQ (Kim) limit:</b> fixed (not editable) Warning range (Low–High) and Action range (Low Low–High High) for Fe, Al2O3, P, SiO2 and LOI, taken from the green-highlighted cells in <i>ASCRM_New_Limits.xlsx</i>. A measured value inside the Warning range passes, inside the Action range (but outside Warning) is a warning, and outside Action fails. All values in this mode show to 4 decimal places. <span style="color:var(--coa-accent2);font-style:italic;">Elements Kim didn't build a block for (shown in teal, tagged SIM)</span> get an estimated range instead of a real one: her Warning-step ÷ inter-lab-SD ratio is averaged across the 5 elements she did define, then applied to that element's own inter-lab SD. Treat SIM rows as indicative only, not a validated PQ limit.
     </div>
   </div>
+
+  <div class="coa-version-footer">ASCRM_CoA_v6.html — revision history: v1 initial interactive tool; v2 added 1σ limit option and ISO 16042 Clause 6 limit option; v3 added PQ (Kim) limit option; v4 removed the warning/action sub-tier from sigma and ISO modes (now plain pass/fail) and dropped the "(Warning)"/"(Action)" button suffixes on 2σ/3σ — warning/action is now a PQ-only concept; v5 renamed ISO to "ISO (Test)", made PQ (Kim) Warning/Action ranges directly editable per row, and PQ mode now always displays 4 decimal places; v6 made PQ (Kim) ranges fixed (not editable) again, renamed the Tolerance/Acceptable range headers to Warning limit (yellow)/Action limit (red) while in PQ mode, and added simulated Warning/Action ranges (teal, tagged SIM) for elements Kim didn't define.</div>
 
 </div>
 
@@ -353,6 +373,8 @@ function decimalsFor(v){
   return 4;
 }
 function fmt(v){ return v.toFixed(decimalsFor(v)); }
+// PQ (Kim) mode always displays 4 decimal places, regardless of magnitude.
+function fmtMode(v){ return state.sigma === "pq" ? v.toFixed(4) : fmt(v); }
 
 function buildTabs(){
   const tabWrap = document.getElementById("coaTabs");
@@ -367,13 +389,123 @@ function buildTabs(){
   });
 }
 
-function computeStatus(certified, sd, k, measured){
+function computeStatus(certified, limit, measured){
   if (measured === null || measured === undefined || isNaN(measured)) return "idle";
+  if (limit === null) return "na";
+  if (limit.type === "range"){
+    if (measured >= limit.lo && measured <= limit.hi) return "pass";
+    if (measured >= limit.loLo && measured <= limit.hiHi) return "warn";
+    return "fail";
+  }
   const diff = Math.abs(measured - certified);
-  if (sd === 0) return diff === 0 ? "pass" : "fail";
-  if (diff <= sd*k) return "pass";
-  if (diff <= sd*k*1.5) return "warn";
+  if (limit.warn === 0) return diff === 0 ? "pass" : "fail";
+  if (diff <= limit.warn) return "pass";
+  if (diff <= limit.action) return "warn";
   return "fail";
+}
+
+// ISO 16042:2007 Clause 6 mass-fraction difference allowance.
+// Rc = Cs * (-10.771*ln(Cs) + 25.4) / 200, Cs = certified mass fraction (%).
+// Clause 6's note: total Fe uses a fixed +/-0.5% Fe allowance instead.
+function isoTolerance(sym, certified){
+  if (sym === "Fe") return 0.5;
+  if (certified <= 0) return 0;
+  return certified * (-10.771*Math.log(certified) + 25.4) / 200;
+}
+
+// "PQ (Kim)" default limits: explicit Warning (Low/High) and Action
+// (Low Low/High High) bounds, taken directly from the green-highlighted
+// cells in ASCRM_New_Limits.xlsx (Fe tab). Only defined for the 5 elements
+// Kim built a block for; other elements have no PQ limit. These are
+// starting values only — editable per-row via the Warning/Action inputs.
+const PQ_RANGES = {
+  ASCRM30: {
+    Fe:    { lo:56.5857,   hi:56.9343,   loLo:56.4114,   hiHi:57.1086 },
+    Al2O3: { lo:2.6585,    hi:2.7015,    loLo:2.6369999, hiHi:2.7230001 },
+    P:     { lo:0.0370651, hi:0.0389349, loLo:0.0361302, hiHi:0.0398698 },
+    SiO2:  { lo:5.7574504, hi:5.8425496, loLo:5.7149008, hiHi:5.8850992 },
+    LOI:   { lo:9.177126,  hi:9.302874,  loLo:9.114252,  hiHi:9.365748 }
+  },
+  ASCRM32: {
+    Fe:    { lo:63.3619369,hi:63.6980631,loLo:63.1938738,hiHi:63.8661262 },
+    Al2O3: { lo:1.8128665, hi:1.8471335, loLo:1.795733,  hiHi:1.864267 },
+    P:     { lo:0.0727993, hi:0.0752007, loLo:0.0715986, hiHi:0.0764014 },
+    SiO2:  { lo:3.8357611, hi:3.9042389, loLo:3.8015223, hiHi:3.9384777 },
+    LOI:   { lo:2.866348,  hi:2.933652,  loLo:2.832695,  hiHi:2.967305 }
+  },
+  ASCRM34: {
+    Fe:    { lo:61.4204,   hi:61.7596,   loLo:61.2508,   hiHi:61.9292 },
+    Al2O3: { lo:2.235674,  hi:2.274326,  loLo:2.216348,  hiHi:2.293652 },
+    P:     { lo:0.0807577, hi:0.0832423, loLo:0.0795155, hiHi:0.0844845 },
+    SiO2:  { lo:4.2425021, hi:4.3142979, loLo:4.2066042, hiHi:4.3501958 },
+    LOI:   { lo:4.714845,  hi:4.805155,  loLo:4.66969,   hiHi:4.85031 }
+  }
+};
+function pqDefaultRange(materialKey, sym){
+  const table = PQ_RANGES[materialKey];
+  if (!table || !(sym in table)) return null;
+  return table[sym];
+}
+// PQ ranges are fixed (not user-editable) — this just looks up Kim's value.
+function pqRangeFor(materialKey, sym){
+  return pqDefaultRange(materialKey, sym);
+}
+
+// For elements Kim didn't build a block for, simulate a Warning/Action range
+// from that element's own inter-lab SD, scaled by the average
+// (Kim's-Warning-step / inter-lab-SD) ratio observed across the 5 elements
+// she DID define for this material. This is an estimate, not a real PQ
+// limit — the UI marks these rows distinctly (see "simulated" below).
+const PQ_AVG_RATIO = {};
+Object.keys(PQ_RANGES).forEach(mat=>{
+  const table = PQ_RANGES[mat];
+  const elRows = (MATERIALS[mat] && MATERIALS[mat].elements) || [];
+  const ratios = [];
+  Object.keys(table).forEach(sym=>{
+    const erow = elRows.find(r=>r[0]===sym);
+    if (!erow) return;
+    const certified = erow[3], sl = erow[4];
+    if (sl > 0){
+      const step = table[sym].hi - certified;
+      ratios.push(step / sl);
+    }
+  });
+  PQ_AVG_RATIO[mat] = ratios.length ? ratios.reduce((a,b)=>a+b,0)/ratios.length : 0.75;
+});
+function pqSimulatedRange(materialKey, row){
+  const [ , , , certified, sl, sw] = row;
+  const sd = sl > 0 ? sl : sw;
+  if (!sd || sd <= 0) return null; // nothing to scale from
+  const ratio = PQ_AVG_RATIO[materialKey] || 0.75;
+  const step = sd * ratio;
+  return { lo: certified-step, hi: certified+step, loLo: certified-2*step, hiHi: certified+2*step };
+}
+
+// Single source of truth for a row's pass/fail limit, under whichever
+// "Limit" mode is currently selected (1/2/3 sigma, ISO (Test), or PQ).
+// Sigma and ISO (Test) modes are a single threshold (pass/fail only, no
+// separate warning tier — that distinction is a PQ-only concept). PQ mode
+// returns Kim's fixed Warning/Action range where she defined one, or a
+// simulated estimate (flagged) for elements she didn't cover. Returns null
+// only when there's no SD to simulate from either.
+function limitFor(row, materialKey){
+  const [sym, , , certified, sl, sw] = row;
+  if (state.sigma === "iso"){
+    const tol = isoTolerance(sym, certified);
+    return { type: "diff", warn: tol, action: tol };
+  }
+  if (state.sigma === "pq"){
+    const defined = pqRangeFor(materialKey, sym);
+    if (defined !== null){
+      return { type: "range", lo: defined.lo, hi: defined.hi, loLo: defined.loLo, hiHi: defined.hiHi, simulated: false };
+    }
+    const sim = pqSimulatedRange(materialKey, row);
+    if (sim === null) return null;
+    return { type: "range", lo: sim.lo, hi: sim.hi, loLo: sim.loLo, hiHi: sim.hiHi, simulated: true };
+  }
+  const sd = state.basis === "sw" ? sw : sl;
+  const tol = sd * state.sigma;
+  return { type: "diff", warn: tol, action: tol };
 }
 
 // Parse a raw entered string (kept verbatim in state.entered so the input
@@ -392,6 +524,20 @@ function render(){
   tbody.innerHTML = "";
   const filter = state.filter.trim().toLowerCase();
 
+  const thTol = document.getElementById("thTol");
+  const thRange = document.getElementById("thRange");
+  if (state.sigma === "pq"){
+    thTol.textContent = "Warning limit";
+    thTol.style.color = "var(--coa-warn)";
+    thRange.textContent = "Action limit";
+    thRange.style.color = "var(--coa-bad)";
+  } else {
+    thTol.textContent = "Tolerance (±)";
+    thTol.style.color = "";
+    thRange.textContent = "Acceptable range";
+    thRange.style.color = "";
+  }
+
   let lastGroup = null;
 
   m.elements.forEach(row=>{
@@ -406,23 +552,41 @@ function render(){
       lastGroup = group;
     }
 
-    const sd = state.basis === "sw" ? sw : sl;
-    const k = state.sigma;
-    const lo = certified - sd*k, hi = certified + sd*k;
+    const limit = limitFor(row, state.active);
     const key = state.active + "_" + sym;
     const rawVal = state.entered[key] !== undefined && state.entered[key] !== null ? state.entered[key] : "";
 
     const tr = document.createElement("tr");
     tr.dataset.rowKey = key;
     tr.dataset.certified = certified;
-    tr.dataset.sd = sd;
+
+    let tolCell, rangeCell;
+    if (limit === null){
+      tr.dataset.limitType = "none";
+      tolCell = "N/A";
+      rangeCell = "—";
+    } else if (limit.type === "range"){
+      tr.dataset.limitType = "range";
+      tr.dataset.lo = limit.lo; tr.dataset.hi = limit.hi;
+      tr.dataset.loLo = limit.loLo; tr.dataset.hiHi = limit.hiHi;
+      const simClass = limit.simulated ? " coa-pq-sim" : "";
+      const simTag = limit.simulated ? ' <span class="coa-sim-tag">SIM</span>' : "";
+      tolCell = `<span class="${simClass.trim()}">${fmtMode(limit.lo)}–${fmtMode(limit.hi)}%${simTag}</span>`;
+      rangeCell = `<span class="${simClass.trim()}">${fmtMode(limit.loLo)}–${fmtMode(limit.hiHi)}%${simTag}</span>`;
+    } else {
+      tr.dataset.limitType = "diff";
+      tr.dataset.warn = limit.warn; tr.dataset.action = limit.action;
+      const lo = certified - limit.warn, hi = certified + limit.warn;
+      tolCell = "±" + fmtMode(limit.warn);
+      rangeCell = fmtMode(lo) + "–" + fmtMode(hi) + "%";
+    }
 
     tr.innerHTML = `
       <td><span class="coa-el">${sym}</span><div class="coa-el-name">${name}</div></td>
-      <td class="coa-num">${fmt(certified)}%</td>
-      <td class="coa-num" style="color:var(--coa-muted)">±${fmt(sd)}</td>
+      <td class="coa-num">${fmtMode(certified)}%</td>
+      <td class="coa-num" style="color:var(--coa-muted)">${tolCell}</td>
       <td class="coa-num" style="color:var(--coa-muted)">${n}</td>
-      <td class="coa-range">${fmt(lo)}–${fmt(hi)}%</td>
+      <td class="coa-range">${rangeCell}</td>
       <td><input type="number" step="any" inputmode="decimal" class="coa-input" data-key="${key}" placeholder="%" value="${rawVal}"></td>
       <td class="coa-diff"></td>
       <td class="coa-pos"></td>
@@ -451,24 +615,36 @@ function updateRowVisuals(key){
   const row = document.querySelector(`tr[data-row-key="${CSS.escape(key)}"]`);
   if (!row) return;
   const certified = parseFloat(row.dataset.certified);
-  const sd = parseFloat(row.dataset.sd);
-  const k = state.sigma;
+  let limit = null;
+  if (row.dataset.limitType === "range"){
+    limit = { type: "range", lo: parseFloat(row.dataset.lo), hi: parseFloat(row.dataset.hi),
+              loLo: parseFloat(row.dataset.loLo), hiHi: parseFloat(row.dataset.hiHi) };
+  } else if (row.dataset.limitType === "diff"){
+    limit = { type: "diff", warn: parseFloat(row.dataset.warn), action: parseFloat(row.dataset.action) };
+  }
   const measured = parsedValue(key);
-  const status = computeStatus(certified, sd, k, measured);
+  const status = computeStatus(certified, limit, measured);
 
   const diffCell = row.querySelector(".coa-diff");
   const posCell = row.querySelector(".coa-pos");
   const statusCell = row.querySelector(".coa-status-cell");
 
   if (measured !== null){
-    diffCell.innerHTML = `<span class="coa-num">${measured >= certified ? "+" : ""}${fmt(measured-certified)}</span>`;
+    diffCell.innerHTML = `<span class="coa-num">${measured >= certified ? "+" : ""}${fmtMode(measured-certified)}</span>`;
   } else {
     diffCell.innerHTML = `<span class="coa-num" style="color:var(--coa-muted)">—</span>`;
   }
 
-  if (measured !== null && sd > 0){
-    const span = sd*k*1.8;
-    const rangeLo = certified - span, rangeHi = certified + span;
+  let rangeLo = null, rangeHi = null;
+  if (limit && limit.type === "range"){
+    const pad = (limit.hiHi - limit.loLo) * 0.4;
+    rangeLo = limit.loLo - pad; rangeHi = limit.hiHi + pad;
+  } else if (limit && limit.type === "diff" && limit.warn > 0){
+    const span = limit.warn*1.8;
+    rangeLo = certified - span; rangeHi = certified + span;
+  }
+
+  if (measured !== null && rangeLo !== null){
     const pct = Math.min(100, Math.max(0, ((measured - rangeLo)/(rangeHi-rangeLo))*100));
     const certPct = ((certified-rangeLo)/(rangeHi-rangeLo))*100;
     posCell.innerHTML = `<div class="coa-bar">
@@ -479,18 +655,18 @@ function updateRowVisuals(key){
     posCell.innerHTML = `<div class="coa-bar"></div>`;
   }
 
-  statusCell.innerHTML = `<span class="coa-status ${status}">${status}</span>`;
+  statusCell.innerHTML = `<span class="coa-status ${status}">${status === "na" ? "N/A" : status}</span>`;
 }
 
 function updateSummary(){
   const m = MATERIALS[state.active];
-  let counts = {pass:0, warn:0, fail:0, idle:0};
+  let counts = {pass:0, warn:0, fail:0, idle:0, na:0};
   m.elements.forEach(row=>{
-    const [sym, , , certified, sl, sw] = row;
-    const sd = state.basis === "sw" ? sw : sl;
+    const [sym, , , certified] = row;
+    const limit = limitFor(row, state.active);
     const key = state.active + "_" + sym;
     const measured = parsedValue(key);
-    const status = computeStatus(certified, sd, state.sigma, measured);
+    const status = computeStatus(certified, limit, measured);
     counts[status]++;
   });
   const summary = document.getElementById("coaSummary");
@@ -499,6 +675,7 @@ function updateSummary(){
     <div class="coa-summary-card"><div class="n warn">${counts.warn}</div><div class="l">Warning</div></div>
     <div class="coa-summary-card"><div class="n fail">${counts.fail}</div><div class="l">Fail</div></div>
     <div class="coa-summary-card"><div class="n idle">${counts.idle}</div><div class="l">Not entered</div></div>
+    <div class="coa-summary-card"><div class="n idle">${counts.na}</div><div class="l">No PQ limit</div></div>
     <div class="coa-summary-card"><div class="n" style="color:var(--coa-accent2)">${m.nLabs}</div><div class="l">Labs (round-robin)</div></div>
   `;
 }
@@ -510,8 +687,9 @@ document.getElementById("coaBasisGroup").addEventListener("click", e=>{
   render();
 });
 document.getElementById("coaSigmaGroup").addEventListener("click", e=>{
-  if (!e.target.dataset.sigma) return;
-  state.sigma = parseInt(e.target.dataset.sigma,10);
+  const val = e.target.dataset.sigma;
+  if (!val) return;
+  state.sigma = /^\d+$/.test(val) ? parseInt(val,10) : val;
   [...e.currentTarget.children].forEach(b=>b.classList.toggle("active", b===e.target));
   render();
 });
