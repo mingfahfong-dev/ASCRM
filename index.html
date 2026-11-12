@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Certificate of Analysis — ASCRM-030 / 032 / 034</title>
+<title>Certificate of Analysis — ASCRM-030 / 032 / 034 (v7)</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff8c1a'/%3E%3Ccircle cx='32' cy='32' r='21' fill='none' stroke='%23fff' stroke-width='3' opacity='.55'/%3E%3Ccircle cx='32' cy='32' r='12' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='3.5' fill='%23fff'/%3E%3Cpath d='M32 6v8M32 50v8M6 32h8M50 32h8' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff8c1a'/%3E%3Ccircle cx='32' cy='32' r='21' fill='none' stroke='%23fff' stroke-width='3' opacity='.55'/%3E%3Ccircle cx='32' cy='32' r='12' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='3.5' fill='%23fff'/%3E%3Cpath d='M32 6v8M32 50v8M6 32h8M50 32h8' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#ff8c1a">
 <style>
   :root{
     --coa-bg:#0d1117;
@@ -20,6 +23,49 @@
     --coa-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
     --coa-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
   }
+
+  /* ---- v7: light theme (dark is default) ---- */
+  [data-theme="light"]{
+    --coa-bg:#f5f5f7; --coa-panel:#ffffff; --coa-panel2:#f0f0f3; --coa-border:#d2d2d7;
+    --coa-text:#1d1d1f; --coa-muted:#6e6e73; --coa-accent2:#0a7f9e;
+    --coa-good:#1f8a3a; --coa-warn:#b7860b; --coa-bad:#d1343a;
+  }
+  [data-theme="light"] .coa-header{background:linear-gradient(135deg,#ffffff,#f2f2f5);}
+  [data-theme="light"] .coa-tab.active{background:linear-gradient(135deg,#fff1e0,#ffe6cc);}
+  [data-theme="light"] .coa-table tbody tr{border-bottom:1px solid #e5e5ea;}
+  [data-theme="light"] .coa-bar{background:#e5e5ea;}
+  .coa-theme-toggle{
+    position:absolute;top:16px;right:18px;
+    background:var(--coa-panel2);border:1px solid var(--coa-border);color:var(--coa-text);
+    font-family:var(--coa-sans);font-size:12px;padding:6px 12px;border-radius:20px;cursor:pointer;
+  }
+  .coa-theme-toggle:hover{border-color:var(--coa-accent);}
+
+  /* ---- v7: production / test / indicative note ---- */
+  .coa-mode-note{
+    margin:0 0 14px;padding:12px 16px;border-radius:10px;font-size:13px;line-height:1.55;
+    border:1px solid var(--coa-border);background:var(--coa-panel2);color:var(--coa-text);
+  }
+  .coa-mode-note .coa-mode-badge{
+    display:inline-block;font-family:var(--coa-mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;
+    padding:2px 8px;border-radius:12px;margin-right:8px;vertical-align:1px;
+  }
+  .coa-mode-note.prod{border-color:var(--coa-good);background:rgba(46,160,67,.10);}
+  .coa-mode-note.prod .coa-mode-badge{background:var(--coa-good);color:#fff;}
+  .coa-mode-note.test{border-color:var(--coa-warn);background:rgba(212,160,23,.10);}
+  .coa-mode-note.test .coa-mode-badge{background:var(--coa-warn);color:#fff;}
+  .coa-mode-note code{font-family:var(--coa-mono);font-size:12px;color:var(--coa-accent);}
+  .coa-btn[data-sigma="pq"]::after{
+    content:"PRODUCTION";margin-left:7px;font-size:8.5px;font-weight:700;letter-spacing:.06em;
+    padding:1px 5px;border-radius:8px;background:var(--coa-good);color:#fff;vertical-align:1px;
+  }
+  .coa-context{
+    max-width:1180px;margin:14px auto 0;font-size:12px;line-height:1.6;color:var(--coa-muted);
+    border:1px solid var(--coa-border);border-radius:10px;background:var(--coa-panel);padding:10px 16px;
+  }
+  .coa-context summary{cursor:pointer;color:var(--coa-text);font-weight:600;}
+  .coa-context b{color:var(--coa-text);}
+  .coa-context code{font-family:var(--coa-mono);font-size:11.5px;}
   *{box-sizing:border-box;}
   body{
     margin:0;
@@ -191,6 +237,7 @@
 <div class="coa-wrap">
 
   <div class="coa-header">
+    <button class="coa-theme-toggle" id="coaThemeToggle" type="button" aria-label="Toggle light or dark mode">☀︎ Light</button>
     <div class="coa-eyebrow">Certified Reference Material · XRF QC Reference</div>
     <h1 class="coa-title">Certificate of Analysis — ASCRM Iron Ore CRMs</h1>
     <div class="coa-sub">Interactive reference for ASCRM-030, ASCRM-032 and ASCRM-034, sourced from Standards Australia Technical Reports AS&nbsp;TR2.30/32/34–2013 (Standards Australia committee MN2/2, prepared per ISO Guide 35). Enter a measured XRF value against any element to check it against the certified value and calculated tolerance band.</div>
@@ -198,7 +245,7 @@
       <span class="coa-chip">Committee: <b>MN2/2 — Chemical Analysis of Iron Ores</b></span>
       <span class="coa-chip">Guide: <b>ISO Guide 35 / ISO 16042</b></span>
       <span class="coa-chip">Format: <b>10 × 10 g foil pouches per 100 g box</b></span>
-      <span class="coa-chip">Version: <b>v6</b></span>
+      <span class="coa-chip">Version: <b>v7</b></span>
     </div>
   </div>
 
@@ -230,6 +277,8 @@
       <button class="coa-reset" id="coaReset">Clear all entered values</button>
     </div>
 
+    <div class="coa-mode-note" id="coaModeNote"></div>
+
     <div class="coa-summary-bar" id="coaSummary"></div>
 
     <div style="overflow-x:auto;">
@@ -256,13 +305,22 @@
       <br><br>
       <b>Oxide conversion:</b> Si, Al, Ca, Mg, Ti and K are certified as elemental % in the source documents (Table 3) but are shown here as SiO2, Al2O3, CaO, MgO, TiO2 and K2O to match standard XRF fusion-bead reporting. Certified value and SD were both scaled by the same factor: SiO2 = Si × 2.1390, Al2O3 = Al × 1.8900, CaO = Ca × 1.3992, MgO = Mg × 1.6578, TiO2 = Ti × 1.6680 (factors per this project's XRF workbook 'element conversion' tab), and K2O = K × 1.2045 (standard stoichiometric ratio, not in that tab). Fe, P, S, Mn, LOI and all trace elements remain elemental.
       <br><br>
-      <b>ISO limit:</b> the "ISO" option computes the mass-fraction difference allowance from ISO&nbsp;16042:2007 Clause&nbsp;6: R<sub>c</sub> = C<sub>s</sub> × (−10.771·ln(C<sub>s</sub>) + 25.4) / 200, where C<sub>s</sub> is the certified mass fraction (%). This clause applies to elemental mass fractions up to 10&nbsp;%; per Clause&nbsp;6's note, total Fe instead uses the standard's fixed ±0.5&nbsp;% Fe allowance regardless of this formula. This mode ignores the Sw/SL toggle above.
+      <b>ISO limit:</b> the "ISO" option computes the mass-fraction difference allowance from ISO&nbsp;16042:2007 Clause&nbsp;6: R<sub>c</sub> = C<sub>s</sub> × (−10.771·ln(C<sub>s</sub>) + 25.4) / 200, where C<sub>s</sub> is the certified mass fraction (%). This clause applies to elemental mass fractions up to 10&nbsp;%; per Clause&nbsp;6's note, total Fe instead uses the standard's fixed ±0.5&nbsp;% Fe allowance regardless of this formula. This clause is a CRM-selection tolerance (how close a CRM must be to a sample), not an acceptance limit, so ISO (Test) is for comparison only — not for production. This mode ignores the Sw/SL toggle above.
       <br><br>
-      <b>PQ (Kim) limit:</b> fixed (not editable) Warning range (Low–High) and Action range (Low Low–High High) for Fe, Al2O3, P, SiO2 and LOI, taken from the green-highlighted cells in <i>ASCRM_New_Limits.xlsx</i>. A measured value inside the Warning range passes, inside the Action range (but outside Warning) is a warning, and outside Action fails. All values in this mode show to 4 decimal places. <span style="color:var(--coa-accent2);font-style:italic;">Elements Kim didn't build a block for (shown in teal, tagged SIM)</span> get an estimated range instead of a real one: her Warning-step ÷ inter-lab-SD ratio is averaged across the 5 elements she did define, then applied to that element's own inter-lab SD. Treat SIM rows as indicative only, not a validated PQ limit.
-    </div>
+      <b>PQ (Kim) limit — PRODUCTION:</b> this is the limit to use in production. It follows the ISO&nbsp;16042 acceptance-of-analytical-values approach rather than raw standard deviations (the ASCRM-030 certification report states the CRM SDs describe the uncertainty of the certified value, and that gates should not simply be set at 2× or 3× SD). Kim's calculation: Trueness Test Limit = 2 × √( (σ<sub>d</sub>(b)+σ<sub>d</sub>(m)·C)² + (σ<sub>L</sub>(b)+σ<sub>L</sub>(m)·C)² + var<sub>CRM</sub> ); Action = certified ± Trueness Test Limit, Warning = certified ± ½ Trueness Test Limit. Checked against her workbook for Fe, Al2O3, P, SiO2 and LOI on ASCRM30/32/34: reproduced to within about 3%, with Fe, P and LOI within 1%. The tool uses her workbook values directly (fixed, not editable): Warning range = Low–High, Action range = Low Low–High High. A result inside Warning passes, inside Action (outside Warning) is a warning, outside Action fails. Values show to 4 decimal places. <span style="color:var(--coa-accent2);font-style:italic;">Rows in teal tagged SIM are NOT Kim's limits</span> — they are an estimate for elements she has no block for (her Warning-step ÷ inter-lab-SD ratio, averaged, applied to that element's SD) and must not be used in production.
+      </div>
   </div>
 
-  <div class="coa-version-footer">ASCRM_CoA_v6.html — revision history: v1 initial interactive tool; v2 added 1σ limit option and ISO 16042 Clause 6 limit option; v3 added PQ (Kim) limit option; v4 removed the warning/action sub-tier from sigma and ISO modes (now plain pass/fail) and dropped the "(Warning)"/"(Action)" button suffixes on 2σ/3σ — warning/action is now a PQ-only concept; v5 renamed ISO to "ISO (Test)", made PQ (Kim) Warning/Action ranges directly editable per row, and PQ mode now always displays 4 decimal places; v6 made PQ (Kim) ranges fixed (not editable) again, renamed the Tolerance/Acceptable range headers to Warning limit (yellow)/Action limit (red) while in PQ mode, and added simulated Warning/Action ranges (teal, tagged SIM) for elements Kim didn't define.</div>
+  <div class="coa-version-footer">ASCRM_CoA_v7.html — v7 · changelog below</div>
+
+  <details class="coa-context">
+    <summary>Context, purpose and changelog (for continuing this tool later, in any AI)</summary>
+    <p><b>Purpose:</b> check XRF/LOI results measured on ASCRM-030/032/034 against certified values for PMLB iron ore QC, under five selectable limit models. <b>PQ (Kim) is the production limit.</b> 1σ/2σ/3σ are indicative only; ISO (Test) is a test of ISO 16042 Clause 6 and is not an acceptance limit.</p>
+    <p><b>Sources:</b> Standards Australia TR2.30/32/34 certificates (values embedded in <code>MATERIALS</code>: sym, name, group, certified, SL, Sw, N, navg); ISO 16042:2007; ASCRM-030 certification report; <i>ASCRM_New_Limits.xlsx</i> (Kim's green-highlighted Warning/Action cells, Fe tab) and her calculation screenshots (ASCRM.zip). PQ ranges are held in <code>PQ_RANGES</code>; <code>PQ_AVG_RATIO</code> drives the SIM estimates.</p>
+    <p><b>Kim's formula (from her screenshot):</b> Trueness Test Limit = 2·√((σd(b)+σd(m)·Measured)² + (σL(b)+σL(m)·Measured)² + var_TrueTest_CRM). Upper/Lower = Certified ± limit (Action); Upper/Lower half = Certified ± limit/2 (Warning). Her coefficient table lists σd(m), σd(b), σL(m), σL(b), Rd(m), Rd(b), P(m), P(b) for 21 elements.</p>
+    <p><b>Open item:</b> PQ for elements outside Fe, Al2O3, P, SiO2, LOI is still SIM (estimated). Her coefficient table covers them, so a live formula could replace SIM — not yet built.</p>
+    <p><b>Changelog:</b> v1 initial interactive tool · v2 added 1σ and ISO 16042 Clause 6 limit · v3 added PQ (Kim) limit · v4 sigma/ISO modes became plain pass/fail, warning/action kept for PQ only · v5 ISO renamed ISO (Test), PQ ranges editable, 4 decimal places in PQ · v6 PQ ranges fixed again, Warning limit (yellow) / Action limit (red) headers, SIM estimates for undefined elements · v7 PQ (Kim) marked PRODUCTION with per-mode notes, PQ footnote now cites Kim's ISO 16042 formula, light/dark toggle (dark default), orange icon, this context block.</p>
+  </details>
 
 </div>
 
@@ -517,8 +575,41 @@ function parsedValue(key){
   return isNaN(v) ? null : v;
 }
 
+
+// v7: per-mode production / test / indicative note
+function updateModeNote(){
+  const el = document.getElementById("coaModeNote");
+  if (!el) return;
+  if (state.sigma === "pq"){
+    el.className = "coa-mode-note prod";
+    el.innerHTML = '<span class="coa-mode-badge">PRODUCTION</span><b>PQ (Kim) is the production limit.</b> Built on the ISO&nbsp;16042 acceptance formula, not raw standard deviations: Action = certified ± Trueness Test Limit, Warning = certified ± ½ of it. Rows tagged <b>SIM</b> are estimates, not Kim\'s limits — do not use them in production.';
+  } else if (state.sigma === "iso"){
+    el.className = "coa-mode-note test";
+    el.innerHTML = '<span class="coa-mode-badge">TEST ONLY</span><b>ISO (Test)</b> uses ISO&nbsp;16042 Clause&nbsp;6, a CRM-selection tolerance rather than an acceptance limit. Not for production — use <b>PQ (Kim)</b>.';
+  } else {
+    el.className = "coa-mode-note test";
+    el.innerHTML = '<span class="coa-mode-badge">INDICATIVE</span><b>' + state.sigma + 'σ</b> on the CRM standard deviation is for reference only. ISO&nbsp;16042 and the ASCRM-030 certification report advise against setting gates at 2× or 3× the CRM SD, because it ignores your method\'s own variability. Use <b>PQ (Kim)</b> for production.';
+  }
+}
+
+// v7: light / dark toggle (dark is the default)
+(function(){
+  const root = document.documentElement, btn = document.getElementById("coaThemeToggle");
+  function apply(t){
+    if (t === "light") root.setAttribute("data-theme","light"); else root.removeAttribute("data-theme");
+    btn.textContent = t === "light" ? "☾ Dark" : "☀︎ Light";
+  }
+  let saved = null; try { saved = localStorage.getItem("ascrm_theme"); } catch(e){}
+  apply(saved === "light" ? "light" : "dark");
+  btn.addEventListener("click", ()=>{
+    const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    apply(next); try { localStorage.setItem("ascrm_theme", next); } catch(e){}
+  });
+})();
+
 function render(){
   buildTabs();
+  updateModeNote();
   const m = MATERIALS[state.active];
   const tbody = document.getElementById("coaTableBody");
   tbody.innerHTML = "";
